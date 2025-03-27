@@ -1,16 +1,7 @@
-export type WolfPointActivity = {
-    notes: string
-    time: number
-    verified: boolean
-}
-
-export type WolfPointVolunteer = {
-    id: string
-    name: string
-    activities: WolfPointActivity[]
-}
-
-export const wolfPointVolunteers: WolfPointVolunteer[] = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.wolfPointVolunteers = void 0;
+exports.wolfPointVolunteers = [
     {
         id: '400sg',
         name: 'Sarah Galloway',
@@ -52,7 +43,7 @@ export const wolfPointVolunteers: WolfPointVolunteer[] = [
     {
         id: '403jr',
         name: 'Joanna Reilly',
-            activities: [
+        activities: [
             {
                 notes: 'Mapped trail for Trail Lupine proposal',
                 time: 5,
@@ -65,4 +56,4 @@ export const wolfPointVolunteers: WolfPointVolunteer[] = [
             }
         ]
     }
-]
+];

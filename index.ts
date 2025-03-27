@@ -1,37 +1,47 @@
 import {
-    RaccoonMeadowsVolunteers,
     RaccoonMeadowsActivity,
+    RaccoonMeadowsVolunteer,
     raccoonMeadowsVolunteers,
 } from './raccoon-meadows-log'
   
 import {
-    WolfPointVolunteers,
     WolfPointActivity,
+    WolfPointVolunteer,
     wolfPointVolunteers,
 } from './wolf-point-log'
   
 type CombinedActivity = RaccoonMeadowsActivity | WolfPointActivity
   
-type Volunteers = {
+type Volunteer = {
     id: number
     name: string
     activities: CombinedActivity[]
 }
-  
+//take the list of volunteers of different types and combine them to match the Volunteers type
 function combineVolunteers(
-    volunteers: (RaccoonMeadowsVolunteers | WolfPointVolunteers)[]
+    volunteers: (RaccoonMeadowsVolunteer | WolfPointVolunteer)[]
 ) {
-  
+  return volunteers.map(
+    (volunteer: RaccoonMeadowsVolunteer | WolfPointVolunteer) => {
+        //transform the id‘s of type string into number
+        if(typeof volunteer.id === 'string'){
+            volunteer.id = parseInt(volunteer.id, 10)
+        }
+        return volunteer
+    }
+  )
 }
-  
-function calculateHours(volunteers: Volunteers[]) {
+console.log(combineVolunteers(wolfPointVolunteers))
+function calculateHours(volunteers: Volunteer[]) {
     return volunteers.map(
         (volunteer) => {
             let hours = 0
         
-            volunteer.activities.forEach((activity) => {
+            volunteer.activities.forEach(
+                (activity) => {
         
-            });
+                }
+            )
         
             return {
                 id: volunteer.id,
@@ -44,5 +54,5 @@ function calculateHours(volunteers: Volunteers[]) {
   
 const combinedVolunteers = combineVolunteers(
     [].concat(wolfPointVolunteers, raccoonMeadowsVolunteers)
-);
+)
   

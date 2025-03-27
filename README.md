@@ -14,3 +14,12 @@ You’ll need to
 - calculate which volunteers have the most hours.
 
 **Get your bug spray and hiking boots and let’s type out this program!**
+
+
+## Welcome to the Park Service. Let’s inspect some of the code that already exists so that we can get familiar with the data we’ll be working with:
+
+- index.ts: Contains incomplete code that a colleague put together. 
+At the top of their code, they’re importing data and types from a couple of files. 
+Later on in their code, they made some incomplete functions, defined some types, and began on some of the logic we can use to calculate volunteer hours.
+- tsconfig.json: Defines the rules for TypeScript to compile code into JavaScript.
+It’s worthwhile to look through these files so that you’ll understand the structure of this project.

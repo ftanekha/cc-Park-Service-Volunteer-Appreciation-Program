@@ -1,16 +1,7 @@
-export type RaccoonMeadowsActivity = {
-    description: string
-    hours: number
-    verified: string
-}
-
-export type RaccoonMeadowsVolunteer = {
-    id: number
-    name: string
-    activities: RaccoonMeadowsActivity[]
-}
-  
-export const raccoonMeadowsVolunteers: RaccoonMeadowsVolunteer[] = [
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.raccoonMeadowsVolunteers = void 0;
+exports.raccoonMeadowsVolunteers = [
     {
         id: 100,
         name: 'Rose Sutton',
@@ -70,5 +61,4 @@ export const raccoonMeadowsVolunteers: RaccoonMeadowsVolunteer[] = [
             }
         ]
     }
-]
-  
+];
