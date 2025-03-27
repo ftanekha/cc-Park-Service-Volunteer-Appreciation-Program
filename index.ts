@@ -48,7 +48,7 @@ function getHours(activity: CombinedActivity){
     return activity.time
 }
 //calculate each volunteers hours of work
-function calculateHours(volunteers: Volunteer[]) {
+function calculateHours(volunteers: (RaccoonMeadowsVolunteer | WolfPointVolunteer)[]) {
     return volunteers.map(
         (volunteer) => {
             let hours = 0
@@ -69,8 +69,18 @@ function calculateHours(volunteers: Volunteer[]) {
         }
     )
 }
-  
+
 const combinedVolunteers = combineVolunteers(
     [].concat(wolfPointVolunteers, raccoonMeadowsVolunteers)
 )
-  
+
+console.log(calculateHours(combinedVolunteers))
+
+//sort combined volunteers array
+function byHours(a, b){
+    return b.hours - a.hours
+}
+
+const result = calculateHours(combinedVolunteers).sort(byHours)
+
+console.log(result)
