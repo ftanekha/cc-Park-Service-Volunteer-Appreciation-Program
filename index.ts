@@ -21,20 +21,21 @@ type Volunteer = {
 function combineVolunteers(
     volunteers: (RaccoonMeadowsVolunteer | WolfPointVolunteer)[]
 ) {
-  return volunteers.map(
-    (volunteer: RaccoonMeadowsVolunteer | WolfPointVolunteer) => {
+  const volunteersArray: Volunteer[] = volunteers.map(
+    (volunteer: RaccoonMeadowsVolunteer | WolfPointVolunteer): Volunteer => {
         //transform the id‘s of type string into number
         if(typeof volunteer.id === 'string'){
             volunteer.id = parseInt(volunteer.id, 10)
         }
-        return volunteer
+        return { id: volunteer.id, name: volunteer.name, activities: volunteer.activities }
     }
   )
+  return volunteersArray
 }
 //verify volunteer's hours of voluntary work
 function isVerified(verified: boolean | string){
     if(typeof verified === 'string'){
-        if(verified === 'yes') return true
+        if(verified === 'Yes') return true
         return false
     }else{
         return verified
@@ -48,7 +49,7 @@ function getHours(activity: CombinedActivity){
     return activity.time
 }
 //calculate each volunteers hours of work
-function calculateHours(volunteers: (RaccoonMeadowsVolunteer | WolfPointVolunteer)[]) {
+function calculateHours(volunteers: Volunteer[]) {
     return volunteers.map(
         (volunteer) => {
             let hours = 0
@@ -71,8 +72,8 @@ function calculateHours(volunteers: (RaccoonMeadowsVolunteer | WolfPointVoluntee
 }
 
 //combine volunteers array
-const combinedVolunteers = combineVolunteers(
-    [].concat(wolfPointVolunteers, raccoonMeadowsVolunteers)
+const combinedVolunteers: Volunteer[] = combineVolunteers(
+    [...wolfPointVolunteers, ...raccoonMeadowsVolunteers]
 )
 
 //sort combined volunteers array by hours of activity

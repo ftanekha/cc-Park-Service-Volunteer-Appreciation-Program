@@ -1,21 +1,31 @@
 "use strict";
+var __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {
+    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {
+        if (ar || !(i in from)) {
+            if (!ar) ar = Array.prototype.slice.call(from, 0, i);
+            ar[i] = from[i];
+        }
+    }
+    return to.concat(ar || Array.prototype.slice.call(from));
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 var raccoon_meadows_log_1 = require("./raccoon-meadows-log");
 var wolf_point_log_1 = require("./wolf-point-log");
 //take the list of volunteers of different types and combine them to match the Volunteers type
 function combineVolunteers(volunteers) {
-    return volunteers.map(function (volunteer) {
+    var volunteersArray = volunteers.map(function (volunteer) {
         //transform the id‘s of type string into number
         if (typeof volunteer.id === 'string') {
             volunteer.id = parseInt(volunteer.id, 10);
         }
-        return volunteer;
+        return { id: volunteer.id, name: volunteer.name, activities: volunteer.activities };
     });
+    return volunteersArray;
 }
 //verify volunteer's hours of voluntary work
 function isVerified(verified) {
     if (typeof verified === 'string') {
-        if (verified === 'yes')
+        if (verified === 'Yes')
             return true;
         return false;
     }
@@ -45,9 +55,9 @@ function calculateHours(volunteers) {
         };
     });
 }
-var combinedVolunteers = combineVolunteers([].concat(wolf_point_log_1.wolfPointVolunteers, raccoon_meadows_log_1.raccoonMeadowsVolunteers));
-console.log(calculateHours(combinedVolunteers));
-//sort combined volunteers array
+//combine volunteers array
+var combinedVolunteers = combineVolunteers(__spreadArray(__spreadArray([], wolf_point_log_1.wolfPointVolunteers, true), raccoon_meadows_log_1.raccoonMeadowsVolunteers, true));
+//sort combined volunteers array by hours of activity
 function byHours(a, b) {
     return b.hours - a.hours;
 }
