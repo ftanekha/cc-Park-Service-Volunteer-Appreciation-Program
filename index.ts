@@ -31,7 +31,23 @@ function combineVolunteers(
     }
   )
 }
-console.log(combineVolunteers(wolfPointVolunteers))
+//verify volunteer's hours of voluntary work
+function isVerified(verified: boolean | string){
+    if(typeof verified === 'string'){
+        if(verified === 'yes') return true
+        return false
+    }else{
+        return verified
+    }
+}
+
+function getHours(activity: CombinedActivity){
+    if('hours' in activity){
+        return activity.hours
+    }
+    return activity.time
+}
+//calculate each volunteers hours of work
 function calculateHours(volunteers: Volunteer[]) {
     return volunteers.map(
         (volunteer) => {
@@ -39,14 +55,16 @@ function calculateHours(volunteers: Volunteer[]) {
         
             volunteer.activities.forEach(
                 (activity) => {
-        
+                    if(isVerified(activity.verified)){
+                        hours += getHours(activity)
+                    }
                 }
             )
         
             return {
                 id: volunteer.id,
                 name: volunteer.name,
-                hours: hours,
+                hours: hours
             }
         }
     )
