@@ -70,13 +70,12 @@ function calculateHours(volunteers: (RaccoonMeadowsVolunteer | WolfPointVoluntee
     )
 }
 
+//combine volunteers array
 const combinedVolunteers = combineVolunteers(
     [].concat(wolfPointVolunteers, raccoonMeadowsVolunteers)
 )
 
-console.log(calculateHours(combinedVolunteers))
-
-//sort combined volunteers array
+//sort combined volunteers array by hours of activity
 function byHours(a, b){
     return b.hours - a.hours
 }
